@@ -1,3 +1,60 @@
-<h1> First website in github </h1>
-<p> this is a first sample of websites for AFGO </p>
-<p><img src= "https://imgur.com/gallery/ms9rUcI" /></p>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Innovation and Data</title>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <h1>Innovation and Data</h1>
+  <p>Welcome to our page about innovation and data. Here you will find information and resources to help you learn more
+    about these topics.</p>
+</body>
+
+<style>
+  /* Set the width of the buttons to fit 50 characters */
+  button {
+    width: calc(50 * 0.6em);
+  }
+</style>
+
+
+<table>
+  <script>
+    // Example data set
+    let data = [
+      ['A', 'B', 'C', 'D', 'E', 'F'],
+      ['G', 'H', 'I', 'J', 'K', 'L'],
+      ['M', 'N', 'O', 'P', 'Q', 'R'],
+      ['S', 'T', 'U', 'V', 'W', 'X'],
+      ['Y', 'Z', 'AA', 'AB', 'AC', 'AD'],
+      ['AE', 'AF', 'AG', 'AH', 'AI', 'AJ'],
+      ['AK', 'AL', 'AM', 'AN', 'AO', 'AP']
+    ];
+
+    for (let i = 0; i < 7; i++) {
+      document.write('<tr>');
+      for (let j = 0; j < 6; j++) {
+        let name = data[i][j];
+        document.write(`<td><button onclick="myFunction(${i + 1},${j + 1})">${name}</button></td>`);
+      }
+      document.write('</tr>');
+    }
+  </script>
+</table>
+
+<script>
+  let buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      button.style.backgroundColor = 'lightgreen';
+      setTimeout(() => {
+        button.style.backgroundColor = '';
+      }, 200);
+    });
+  });
+</script>
+
+
+</html>
