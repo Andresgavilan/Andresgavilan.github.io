@@ -1,83 +1,86 @@
-<!DOCTYPE html>
-<html>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<link
+  href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+  rel="stylesheet"
+/>
+<div class="sidebar">
+    <div class="heading">
+      <h1>Our locations</h1>
+    </div>
+    <div id="listings" class="listings"></div>
+  </div>
+  <div id="map" class="map"></div>
 
-<head>
   <style>
-    /* CSS for logo */
-    .logo {
-      max-width: 100px;
-      max-height: 100px;
+    * {
+      box-sizing: border-box;
+    }
+  
+    body {
+      color: #404040;
+      font:
+        400 15px/22px 'Source Sans Pro',
+        'Helvetica Neue',
+        sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+  
+    h1 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: 400;
+      line-height: 20px;
+      padding: 20px 2px;
+    }
+  
+    a {
+      color: #404040;
+      text-decoration: none;
+    }
+  
+    a:hover {
+      color: #101010;
+    }
+  
+    /* The page is split between map and sidebar - the sidebar gets 1/3, map
+    gets 2/3 of the page. You can adjust this to your personal liking. */
+    .sidebar {
+      position: absolute;
+      width: 33.3333%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      border-right: 1px solid rgb(0 0 0 / 25%);
+    }
+  
+    .map {
+      position: absolute;
+      left: 33.3333%;
+      width: 66.6666%;
+      top: 0;
+      bottom: 0;
+    }
+  
+    .heading {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      height: 60px;
+      line-height: 60px;
+      padding: 0 10px;
     }
   </style>
-  <title>taashi IT MOTION</title>
-  <meta charset="UTF-8">
-
-  <img src="https://am4pap001files.storage.live.com/y4mYAp1cf1HX3vVkIuFTz5IqC6AVNwjctWypIqeyAxFOw4bJLxi8_BLyMlFrmdKoG_SFfWfK9-EIAIoH3Ll0mnWYHHXUay7ibpZvkwFWtHo6KfInaNuhvYr29lymmF7OuN8IxvpNl9zKERSHUSKrbL15lIHSrO2PI__QipdR8RrnRQaAJW5ZvicSSL0LRKiyq2n?width=1280&height=365&cropmode=none" alt="Logo" class="logo">
-  
-  <h1>taashi IT Motion</h1>
-  
-  <script>
-    function myFunction(row, column) {
-      let buttonValue = document.getElementById('Share Mobility').rows[row].cells[column].innerText;
-      alert(`You clicked the button with value: ${buttonValue}`);
-      // Replace the window.location.href with the URL of the page you want to navigate to
-      window.location.href = 'https://taashii-it-motion.github.io/MERCADO/';
-    }
-  </script>
-
-</head>
-
-<body>
-  <h1>Accelerating impact with Data</h1>
-  <p>Welcome to our page about innovation and data. Here you will find information and resources to help you learn more
-    about these topics.</p>
-
-  <img src="https://am4pap001files.storage.live.com/y4m7lgbCMJNKtGSI7UgcKOUXUTUBhsilpOm-_xmAuxfkwR_BWJaFmdI3EcSruoCfZo6tJhSOA20WmTo1zGnpJHevLonXUdkhPw9uOdrXT5kjwVDqL6Vrs9PtElFBR1lPKAUwhKDpfjGwMUow8GQAjExK4AGRLiaanxOc-EeczezzRKPZNkFcIjQBW54LgxLk8e1?width=600&height=340&cropmode=none" alt="GIF">
-
-</body>
-
-<style>
-  /* Set the width of the buttons to fit 50 characters */
-  button {
-    width: calc(50 * 0.6em);
-  }
-</style>
-
-<table>
-  <script>
-    // Example data set
-    let data = [
-      ['x', 'Fare', 'Capacity', 'Demand', 'Technology', 'Services'],
-      ['Passenger Transport', 'H', 'I', 'J', 'K', 'L'],
-      ['Infrastructure', 'N', 'O', 'P', 'Q', 'R'],
-      ['Share Mobility', 'T', 'U', 'V', 'W', 'X'],
-      ['Micro Mobility', 'Z', 'AA', 'AB', 'AC', 'AD'],
-      ['Energy', 'AF', 'AG', 'AH', 'AI', 'AJ'],
-      ['Freight', 'AL', 'AM', 'AN', 'AO', 'AP']
-    ];
-
-    for (let i = 0; i < 7; i++) {
-      document.write('<tr>');
-      for (let j = 0; j < 6; j++) {
-        let name = data[i][j];
-        document.write(`<td><button onclick="myFunction(${i + 1},${j + 1})">${name}</button></td>`);
-      }
-      document.write('</tr>');
-    }
-  </script>
-</table>
 
 <script>
-  let buttons = document.querySelectorAll('button');
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      button.style.backgroundColor = 'lightgreen';
-      setTimeout(() => {
-        button.style.backgroundColor = '';
-      }, 200);
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5kcmVzZ2F2aWxhbiIsImEiOiJja2wyd2Z3dXcwZDE3MnVwMTlhcnNieDhxIn0.f_iLJPAJJUyEXEkm7itrZw ';
+  
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v11',
+      center: [-77.034084, 38.909671],
+      zoom: 13,
+      scrollZoom: false
     });
-  });
-</script>
-
-
-</html>
+  </script>
