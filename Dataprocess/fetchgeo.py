@@ -2,7 +2,7 @@ import psycopg2
 import json
 
 # Connect to your postgres DB
-conn = psycopg2.connect("dbname=CVMAP25 user=postgres password=3562787Socarra$ host:localhost")
+conn = psycopg2.connect("dbname=CVMAP25 user=postgres password=2525CVMAPAFGO$ host=localhost")
 
 # Open a cursor to perform database operations
 cur = conn.cursor()
@@ -24,7 +24,7 @@ for record in records:
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [record[8], record[7]]  # longitude, latitude
+            "coordinates": [record[8], record[9]]  # longitude, latitude
         },
         "properties": {
             "Where": record[1],
@@ -40,7 +40,7 @@ for record in records:
     geojson["features"].append(feature)
 
 # Save the GeoJSON to a file
-with open('CVMAP.geojson', 'w') as f:
+with open('CVMAP2.geojson', 'w') as f:
     json.dump(geojson, f, indent=4)
 
 # Close communication with the database
