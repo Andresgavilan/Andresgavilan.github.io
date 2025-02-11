@@ -24,7 +24,7 @@ for record in records:
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [record[8], record[9]]  # longitude, latitude
+            "coordinates": [record[9], record[8]]  # longitude, latitude
         },
         "properties": {
             "Where": record[1],
@@ -40,7 +40,7 @@ for record in records:
     geojson["features"].append(feature)
 
 # Save the GeoJSON to a file
-with open('CVMAP2.geojson', 'w') as f:
+with open('Dataprocess/CVMAP.geojson', 'w') as f:
     json.dump(geojson, f, indent=4)
 
 # Close communication with the database

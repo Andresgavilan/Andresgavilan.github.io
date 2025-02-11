@@ -22,7 +22,7 @@ const map = new mapboxgl.Map({
 });
 
 // Fetch the GeoJSON data from the server
-fetch('CVMAP.geojson')
+fetch('Dataprocess/CVMAP.geojson')
   .then(response => response.json())
   .then(trabajos => {
     // Sort the features array by Date in descending order
