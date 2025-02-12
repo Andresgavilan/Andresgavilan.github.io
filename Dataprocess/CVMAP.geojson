@@ -160,6 +160,26 @@
                 "More_Info": "Stakeholder reporting on sustainable mobility, road safety audits, micro-mobility, road design assessments and infrastructure. Document and contract management, QA/QC. Data and geographic analysis for private and public transportation networks."
             },
             "id": 34
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    13.23455,
+                    52.513453
+                ]
+            },
+            "properties": {
+                "Where": "test",
+                "Title": "test",
+                "Date": "test",
+                "City": "test",
+                "Subtitle": "test",
+                "Description": "test",
+                "More_Info": "test"
+            },
+            "id": 1
         }
     ]
 }
