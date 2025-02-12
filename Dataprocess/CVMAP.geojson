@@ -160,26 +160,6 @@
                 "More_Info": "Stakeholder reporting on sustainable mobility, road safety audits, micro-mobility, road design assessments and infrastructure. Document and contract management, QA/QC. Data and geographic analysis for private and public transportation networks."
             },
             "id": 34
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    13.3898614,
-                    52.5105502
-                ]
-            },
-            "properties": {
-                "Where": "Taashii",
-                "Title": "Open data for sustainable development",
-                "Date": "2020",
-                "City": "Berlin, Germany",
-                "Subtitle": "Product Manager",
-                "Description": "Support the conception of a new product that allows the understanding of open data and mix algorithms for transport analysis in a tangible and sustainable solution for access to mobility indicators for all type of backgrounds.",
-                "More_Info": "Support the conception of a new product that allows the understanding of open data and mix algorithms for transport analysis in a tangible and sustainable solution for access to mobility indicators for all type of backgrounds."
-            },
-            "id": 1
         }
     ]
 }
