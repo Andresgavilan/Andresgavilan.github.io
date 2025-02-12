@@ -40,9 +40,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install psycopg2-binary
 
+      - name: Initialize database
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        run: |
+          psql -h localhost -U postgres -d CVMAP25 -c "CREATE ROLE root WITH LOGIN SUPERUSER INHERIT CREATEDB CREATEROLE NOREPLICATION;"
+          psql -h localhost -U postgres -d CVMAP25 -c "CREATE TABLE IF NOT EXISTS geo_data (id SERIAL PRIMARY KEY, where TEXT, title TEXT, date DATE, city TEXT, subtitle TEXT, description TEXT, more_info TEXT, latitude DOUBLE PRECISION, longitude DOUBLE PRECISION);"
+      
       - name: Run fetchgeo.py
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         run: python Dataprocess/fetchgeo.py
-
+  
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
