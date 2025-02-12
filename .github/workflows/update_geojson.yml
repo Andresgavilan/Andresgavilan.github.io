@@ -2,7 +2,7 @@ name: Update GeoJSON
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # '0 0 * * 0' Runs every week at midnight on Sunday
+    - cron: '0 0 * * 0'  # '0 0 * * 0' Runs every week at midnight on Sunday
   workflow_dispatch:  # Allows manual triggering from the Actions tab
 
 jobs:
