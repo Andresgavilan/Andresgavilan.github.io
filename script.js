@@ -1,14 +1,3 @@
-// Get the listings container
-const listings = document.getElementById('listings');
-
-// Add a scroll event listener to the listings container
-listings.addEventListener('scroll', () => {
-    // Calculate how much has been scrolled
-  const scrollTop = listings.scrollTop; // Distance scrolled from the top
-  const scrollHeight = listings.scrollHeight; // Total height of the content
-  const clientHeight = listings.clientHeight; // Height of the visible area
-});
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW5kcmVzZ2F2aWxhbiIsImEiOiJja2wyd2Z3dXcwZDE3MnVwMTlhcnNieDhxIn0.f_iLJPAJJUyEXEkm7itrZw';
 /**
  * Add the map to the page
@@ -98,6 +87,8 @@ function addMarkers(trabajos) {
         `listing-${marker.properties.id}`
       );
       listing.classList.add('active');
+      listings.classList.remove('open');
+      toggleButton.style.display = 'block';
     });
   }
 }
@@ -148,6 +139,9 @@ function buildLocationList(trabajos) {
         activeItem[0].classList.remove('active');
       }
       this.parentNode.classList.add('active');
+      // Hide the listings container
+      listings.classList.remove('open');
+      toggleButton.style.display = 'block';
     });
   }
 }
@@ -177,3 +171,11 @@ function createPopUp(currentFeature) {
     )
     .addTo(map);
 }
+
+const toggleButton = document.getElementById('toggle-listings');
+const listing = document.getElementById('listing');
+
+toggleButton.addEventListener('click', () => {
+  listings.classList.toggle('open');
+  toggleButton.style.display = listing.classList.contains('open') ? 'none' : 'block';
+});
