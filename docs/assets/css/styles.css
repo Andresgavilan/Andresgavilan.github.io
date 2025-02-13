@@ -1,214 +1,333 @@
 body {
-    color: #404040;
+  color: #404040;
+  font:
+    400 15px/22px 'Source Sans Pro',
+    'Helvetica Neue',
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  /* display: flex;
+  flex-direction: row; /* Default row layout */
+  /* height: 100vh; */
+}
+* {
+  box-sizing: border-box;
+}
+h1 {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 20px 2px;
+}
+a {
+  color: #404040;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+}
+
+/* Default styles for desktop */
+.sidebar {
+  position: fixed;
+  width: 33.3333%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  border-right: 1px solid rgba(185, 31, 31, 0.25);
+  background: #f8f8f8;
+}
+
+#map {
+  position: fixed;
+  left: 33.3333%;
+  width: 66.66666%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+.menu-toggle {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu {
+  display: block;
+  padding: 10px;
+  background: #f8f8f8;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 10px 0;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+}
+
+
+.heading {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  min-height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  background-color: #156991;
+  color: #fff;
+}
+
+.listings {
+  height: calc(100%-60px);
+  overflow: auto;
+  padding-bottom: 60px;
+}
+
+.listings .item {
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.listings .item:last-child {
+  border-bottom: none;
+}
+
+.listings .item .title {
+  display: block;
+  color: #156991;
+  font-weight: 700;
+}
+
+.listings .item .title small {
+  font-weight: 400;
+}
+
+.listings .item.active .title,
+.listings .item .title:hover {
+  color: #8cc63f;
+}
+
+.listings .item.active {
+  background-color: #f8f8f8;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #00853e;
+  border-radius: 0;
+}
+
+.marker {
+  border: none;
+  cursor: pointer;
+  height: 56px;
+  width: 56px;
+  background-image: url('marker.png');
+  transition: transform 0.3s;
+  background-size: cover; /* Ensure the marker fits perfectly */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth animation */
+}
+
+/* Marker tweaks */
+.mapboxgl-popup {
+  padding-bottom: 50px;
+  /*max-width: 300px; /* Adjust maximum popup width */
+  /* min-width: 250px; */
+}
+
+.mapboxgl-popup-close-button {
+  display: block; /* Restore close button */
+  background: rgba(255, 251, 7, 0.884);
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.mapboxgl-popup-content {
     font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-    margin: 0;
+    width: 380px; /* 300px standard 400px Full-width popups on smaller screens */
+    /* max-width: 300px; /* Ensures it doesn't overflow */
+    /*min-height: 220px; /* Keeps content balanced */
+    /*background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);*/
     padding: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  h1 {
-    font-size: 22px;
-    margin: 0;
-    font-weight: 400;
-    line-height: 20px;
-    padding: 20px 2px;
-  }
-  a {
-    color: #404040;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #000000;
-  }
+    /*font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    transition: all 0.3s ease-in-out;
+    overflow-wrap: break-word;*/
+    }
+
+.mapboxgl-popup-content h3 {
+  font-size: 20px; /* Larger header */
+  text-align: center;
+  background: #87c21a;
+  color: white;
+  padding: 10px;
+  border-radius: 0px 0px 0 0;
+  margin: 0;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.mapboxgl-popup-content h4 {
+  margin: 0;
+  padding: 10px;
+  font-weight: 400;
+}
+
+.mapboxgl-popup-content div {
+  padding: 10px;
+  /*font-size: 14px; /* Ensure consistent sizing */
+  /*line-height: 1.5; /* Improve readability */
+  /*color: #333; /* Softer text color */
+}
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: #91c949;
+}
+.mapboxgl-popup-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.mapboxgl-popup-content li {
+  margin-bottom: 5px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
   .sidebar {
-    width: 33.3333%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: auto;
-    border-right: 1px solid rgba(185, 31, 31, 0.25);
-    background: #f8f8f8;
+    width: 100%; /* Full width for smaller screens */
+    height: 40%; /* Adjust height dynamically */
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    overflow-y: scroll;
+    /*flex: 1; /* Allow sidebar to grow/shrink */
+    /*min-height: 50%; /* Minimum height on mobile */
+    }
+  #map {
+    left: 0; /* Full-width map on mobile */
+    width: 100%; /* Full-width map */
+    top: 0; /* Push map below the sidebar */
+    height: 60%; /* Adjust height for visibility */
+    position: relative;
   }
-  .map {
-    position: absolute;
-    left: 33.3333%;
-    width: 66.66666%;
-    top: 0;
-    bottom: 0;
+  .heading{
+    min-height: 50px;
+    line-height: 50px;
   }
-  .heading {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    min-height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
-    background-color: #156991;
-    color: #fff;
+
+  h1 {
+    font-size: 18px;
+    padding: 15px 2px;
   }
+
   .listings {
-    height: 100%;
-    overflow: auto;
-    padding-bottom: 60px;
-  }
-  .listings .item {
-    display: block;
-    border-bottom: 1px solid #eee;
-    padding: 10px;
-    text-decoration: none;
-  }
-  .listings .item:last-child {
-    border-bottom: none;
-  }
-  .listings .item .title {
-    display: block;
-    color: #156991;
-    font-weight: 700;
-  }
-  .listings .item .title small {
-    font-weight: 400;
-  }
-  .listings .item.active .title,
-  .listings .item .title:hover {
-    color: #8cc63f;
-  }
-  .listings .item.active {
-    background-color: #f8f8f8;
-  }
-  ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
-    border-left: 0;
-    background: rgba(0, 0, 0, 0.1);
-  }
-  ::-webkit-scrollbar-track {
-    background: none;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #00853e;
-    border-radius: 0;
-  }
-  .marker {
-    border: none;
-    cursor: pointer;
-    height: 56px;
-    width: 56px;
-    background-image: url('marker.png');
-    transition: transform 0.3s;
-    background-size: cover;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .mapboxgl-popup {
     padding-bottom: 50px;
   }
-  .mapboxgl-popup-close-button {
-    display: block;
-    background: transparent;
-    color: #333;
+
+  .listings .item {
+    padding: 8px;
+  }
+
+  .listings .item .title {
+    font-size: 14px;
+  }
+
+  .listings .item .title small {
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .sidebar {
+    /*width: 100%; /* Full width for smaller screens */
+    height: 50%; /* Adjust height dynamically */
+    /*position: relative;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    /*flex: 1; /* Allow sidebar to grow/shrink */
+    /*min-height: 50%; /* Minimum height on mobile */
+    }
+
+  #map {
+    /*left: 0; /* Full-width map on mobile */
+    /*width: 100%; /* Full-width map */
+    top: 50%; /* Push map below the sidebar */
+    height: 50%; /* Adjust height for visibility */
+  }
+  .heading{
+    min-height: 40px;
+    line-height: 40px;
+  }
+
+  h1 {
     font-size: 16px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    padding: 10px 2px;
   }
-  .mapboxgl-popup-content {
-    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-    width: 180px;
+
+  .listings {
+    padding-bottom: 40px;
   }
-  .mapboxgl-popup-content h3 {
-    background: #00853e;
-    color: white;
-    padding: 10px;
-    border-radius: 3px 3px 0 0;
-    margin: 0;
-    font-weight: 700;
-    margin-top: -15px;
+
+  .listings .item {
+    padding: 6px;
   }
-  .mapboxgl-popup-content h4 {
-    margin: 0;
-    padding: 10px;
-    font-weight: 400;
+
+  .listings .item .title {
+    font-size: 12px;
   }
-  .mapboxgl-popup-content div {
-    padding: 10px;
+
+  .listings .item .title small {
+    font-size: 10px;
   }
-  .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
-    margin-top: 15px;
-  }
-  .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-    border-bottom-color: #91c949;
-  }
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-      height: 40%;
-      position: relative;
-      border-right: none;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-    }
-    .map {
-      left: 0;
-      width: 100%;
-      top: 40%;
-      height: 60%;
-    }
-    .heading {
-      min-height: 50px;
-      line-height: 50px;
-    }
-    h1 {
-      font-size: 18px;
-      padding: 15px 2px;
-    }
-    .listings {
-      padding-bottom: 50px;
-    }
-    .listings .item {
-      padding: 8px;
-    }
-    .listings .item .title {
-      font-size: 14px;
-    }
-    .listings .item .title small {
-      font-size: 12px;
-    }
-  }
-  @media (max-width: 480px) {
-    .sidebar {
-      width: 100%;
-      height: 50%;
-      position: relative;
-      border-right: none;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-    }
-    .map {
-      left: 0;
-      width: 100%;
-      top: 50%;
-      height: 50%;
-    }
-    .heading {
-      min-height: 40px;
-      line-height: 40px;
-    }
-    h1 {
-      font-size: 16px;
-      padding: 10px 2px;
-    }
-    .listings {
-      padding-bottom: 40px;
-    }
-    .listings .item {
-      padding: 6px;
-    }
-    .listings .item .title {
-      font-size: 12px;
-    }
-    .listings .item .title small {
-      font-size: 10px;
-    }
-  }
-  .sidebar::-webkit-scrollbar {
-    width: 6px;
-  }
+}
+
+/* Hide the default scrollbar and style the sidebar scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
