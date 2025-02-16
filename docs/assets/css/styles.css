@@ -1,33 +1,91 @@
-.map {
+.modal-content {
   position: fixed;
   top: 0;
-  bottom: 0;
   width: 100%;
+  font-size: 10px;
+  background-color: #ffffff;
+  color: #333;
+  text-align: center;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.map {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.floating-popup {
+  position: fixed;
+  top: 30px;
+  right: 50px;
+  background-color: #f8f8f8;
+  color: #333;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  max-width: 300px;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.floating-popup p {
+  margin: 0;
+  font-size: 14px;
+}
+.highlight-link {
+  color: #00a389; /* Change this to your desired color */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.highlight-link:hover {
+  color: #f0d722; /* Change this to your desired hover color */
+  text-decoration: underline;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  display: flex; /* Align in a row */
+  flex-direction: column; /* Align in a row */
+  gap: 10px;
+  z-index: 1000;
 }
 
 .floating-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ffee00;
-  color: rgb(8, 14, 105);
+  background-color: #f0d722;
+  color: #2d2f6b;
   border: none;
-  padding: 15px 30px;
-  font-size: 20px;
-  border-radius: 150px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-size: 14px;
   cursor: pointer;
-  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.floating-button:hover {
+  background-color: #ffe100;
+  transform: scale(1.1);
 }
 
 .listings {
   position: fixed;
-  top: 0;
+  top: 230px;
   bottom: 0;
   right: 0;
   width: 300px;
   background-color: white;
   overflow-y: auto;
-  box-shadow: -2px 0 5px rgba(170, 65, 65, 0.3);
+  box-shadow: -2px 0 5px #ffffff;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 999;
@@ -66,7 +124,7 @@ a {
 }
 
 a:hover {
-  color: #db1616;
+  color: #ffffff;
 }
 
 /* Default styles for desktop */
@@ -77,41 +135,42 @@ a:hover {
   top: 0;
   left: 0;
   overflow: auto;
-  border-right: 1px solid rgba(185, 31, 31, 0.25);
+  border-right: 1px solid #ffffff;
   background: #f8f8f8;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: 0.3s ease-in-out;
+}
+
+
+.sidebar.open {
+  transform: translateX(0);
 }
 
 .menu-toggle {
-  display: none;
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #333;
-  color: #fff;
+  background: none;
   border: none;
-  padding: 10px;
+  font-size: 24px;
+  color: white;
   cursor: pointer;
 }
 
-.menu {
-  display: block;
-  padding: 10px;
-  background: #f8f8f8;
-  border-bottom: 1px solid #ccc;
-}
-
 .menu ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
 .menu ul li {
-  padding: 10px 0;
+  margin: 20px 0;
 }
 
 .menu ul li a {
+  color: white;
   text-decoration: none;
-  color: #333;
+  font-size: 16px;
 }
 
 .menu ul li a:hover {
@@ -125,7 +184,7 @@ a:hover {
   min-height: 60px;
   line-height: 60px;
   padding: 0 10px;
-  background-color: #156991;
+  background-color: #225495;
   color: #fff;
 }
 
@@ -137,7 +196,7 @@ a:hover {
 
 .listings .item {
   display: block;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ffff;
   padding: 10px;
   text-decoration: none;
 }
@@ -148,7 +207,7 @@ a:hover {
 
 .listings .item .title {
   display: block;
-  color: #156991;
+  color: #225495;
   font-weight: 700;
 }
 
@@ -158,11 +217,11 @@ a:hover {
 
 .listings .item.active .title,
 .listings .item .title:hover {
-  color: #8cc63f;
+  color: #00a389;
 }
 
 .listings .item.active {
-  background-color: #f8f8f8;
+  background-color: #ffffffb7;
 }
 
 ::-webkit-scrollbar {
@@ -177,7 +236,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb{
-  background: #00853e;
+  background: #f0d722;
   border-radius: 0;
 }
 
@@ -201,7 +260,7 @@ a:hover {
 
 .mapboxgl-popup-close-button {
   display: block; /* Restore close button */
-  background: rgba(255, 251, 7, 0.884);
+  background: #f0d722;
   color: #333;
   font-size: 16px;
   cursor: pointer;
@@ -211,32 +270,34 @@ a:hover {
 }
 
 .mapboxgl-popup-content {
-    font: 300 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-    width: 380px; /* 300px standard 400px Full-width popups on smaller screens */
-    /* max-width: 300px; /* Ensures it doesn't overflow */
-    /*min-height: 220px; /* Keeps content balanced */
-    /*background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);*/
-    padding: 0;
-    /*font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
-    transition: all 0.3s ease-in-out;
-    overflow-wrap: break-word;*/
-    }
+  font: 300 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  width: 380px; /* Adjust width as needed */
+  max-height: 300px; /* Set a maximum height for the popup */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 0;
+}
 
 .mapboxgl-popup-content h3 {
   font-size: 20px; /* Larger header */
   text-align: center;
-  background: #87c21a;
-  color: white;
+  background: #ffffff86;
+  color: #225495;
   padding: 5px;
   border-radius: 0px 0px 0 0;
   margin: 0;
   font-weight: 500;
   margin-top: 0px;
+}
+.mapboxgl-popup-content h3 a {
+  color: #225495; /* Link color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Make the link bold */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.mapboxgl-popup-content h3 a:hover {
+  color: #0056b3; /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover */
 }
 .mapboxgl-popup-content h4 {
   margin: 0;
@@ -253,11 +314,10 @@ a:hover {
 .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
   margin-top: 15px;
   font-size: 12px;
-
 }
 
 .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-  border-bottom-color: #91c949;
+  border-bottom-color: #ffffff50;
 }
 .mapboxgl-popup-content ul {
   list-style-type: disc;
@@ -271,27 +331,48 @@ a:hover {
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
   .sidebar {
-    width: 10%; /* Full width for smaller screens */
+    width: 20%; /* Full width for smaller screens */
     height: 10%; /* Adjust height dynamically */
     position: relative;
     border-right: none;
-    border-bottom: 1px solid rgba(179, 22, 22, 0.25);
+    border-bottom: 1px solid #ffffff;
     overflow-y: scroll;
     /*flex: 1; /* Allow sidebar to grow/shrink */
     /*min-height: 50%; /* Minimum height on mobile */
     }
-  #map {
+  .map {
     left: 0; /* Full-width map on mobile */
-    width: 100%; /* Full-width map */
+    width: 1; /* Full-width map */
     top: 0; /* Push map below the sidebar */
-    height: 100%; /* Adjust height for visibility */
+    height: 1; /* Adjust height for visibility */
     position: absolute;
   }
-
-  .floating-button {
-    padding: 10px 20px; /* Make the button bigger */
-    font-size: 20px; /* Adjust font size for smaller screens */
+  .floating-popup {
+    position: fixed;
+    top: 250px;
+    left: 80px;
+    right: 20px;
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 10px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    max-width: 300px;
+    max-height: 350px;
+    overflow-y: auto; /* Enable vertical scrolling */
   }
+
+  .floating-buttons {
+    top: 35px;
+    left: 10px;
+    flex-direction: column; /* Stack vertically on mobile */
+  }
+  .floating-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  
   .heading{
     min-height: 0px;
     line-height: 0px;
@@ -319,14 +400,14 @@ a:hover {
   }
 
   .mapboxgl-popup-content {
-    font: 300 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-    width: 280px; /* 300px standard 400px Full-width popups on smaller screens */
+    font: 100 12px/18px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+    width: 70%; /* 300px standard 400px Full-width popups on smaller screens */
     /* max-width: 300px; /* Ensures it doesn't overflow */
     /*min-height: 220px; /* Keeps content balanced */
-    /*background: #ffffff;
+    /*background: #ffffff;*/
     border-radius: 12px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);*/
-    padding: 0;
+    /*box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);*/
+    padding: 2%;
     /*font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #333;
@@ -340,7 +421,7 @@ a:hover {
 @media (max-width: 480px) {
   .sidebar {
     /*width: 100%; /* Full width for smaller screens */
-    height: 50%; /* Adjust height dynamically */
+    top: 50%; /* Adjust height dynamically */
     /*position: relative;
     border-right: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -348,17 +429,30 @@ a:hover {
     /*min-height: 50%; /* Minimum height on mobile */
     }
 
-  #map {
+  .map {
     /*left: 0; /* Full-width map on mobile */
     /*width: 100%; /* Full-width map */
-    top: 0%; /* Push map below the sidebar */
-    height: 500px; /* Adjust height for visibility */
+    top: 0; /* Push map below the sidebar */
+    height: 550px; /* Adjust height for visibility */
   }
   .floating-button {
       padding: 12px 24px; /* Adjust padding for smaller screens */
       font-size: 14px; /* Adjust font size for smaller screens */
   }
-  
+  .floating-popup {
+    position: fixed;
+    top: 250px;
+    left: 80px;
+    right: 20px;
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 10px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    max-width: 200px;
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
   .heading{
     min-height: 0px;
     line-height: 0px;

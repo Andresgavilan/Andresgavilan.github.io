@@ -153,7 +153,7 @@ function buildLocationList(trabajos) {
 function flyToStore(currentFeature) {
   map.flyTo({
     center: currentFeature.geometry.coordinates,
-    zoom: 15
+    zoom: 12
   });
 }
 
@@ -166,7 +166,7 @@ function createPopUp(currentFeature) {
   const popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
     .setHTML(
-      `<h3>Descrption</h3><h4><Strong>${currentFeature.properties.Where}</Strong></h4>
+      `<h3><Strong><a href="${currentFeature.properties.URL}" target="_blank">${currentFeature.properties.Where}</a></Strong></h3>
       <ul>${currentFeature.properties.Description.split('. ').map(sentence => `<li>${sentence}</li>`).join('')}</ul>`
     )
     .addTo(map);
@@ -179,3 +179,43 @@ toggleButton.addEventListener('click', () => {
   listings.classList.toggle('open');
   toggleButton.style.display = listing.classList.contains('open') ? 'none' : 'block';
 });
+// Add event listeners to open links in a new window
+document.getElementById('publications').addEventListener('click', () => {
+  window.open('https://www.researchgate.net/profile/Andres-Gavilan-2?ev=hdr_xprf', '_blank');
+});
+
+document.getElementById('linkedin').addEventListener('click', () => {
+  window.open('https://www.linkedin.com/in/andres-gavilan/', '_blank');
+});
+
+document.getElementById('listening').addEventListener('click', () => {
+  window.open('https://music.apple.com/profile/pipegavilan', '_blank');
+});
+
+// Hide the floating popup when any floating button is clicked
+const floatingButtons = document.querySelectorAll('.floating-button');
+const floatingPopup = document.getElementById('floating-popup');
+
+floatingButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    floatingPopup.style.display = 'none';
+  });
+});
+
+// Get the user's location and zoom to it
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(position => {
+    const userLocation = [position.coords.longitude, position.coords.latitude];
+    map.flyTo({
+      center: userLocation,
+      zoom: 12
+    });
+
+    // Add a marker for the user's location
+    new mapboxgl.Marker({ color: 'red' })
+      .setLngLat(userLocation)
+      .addTo(map);
+  });
+} else {
+  console.error('Geolocation is not supported by this browser.');
+}

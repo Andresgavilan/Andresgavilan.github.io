@@ -1,17 +1,35 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Andres Gavilan</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
-    <link rel="stylesheet" href="docs\assets\css\styles.css" />
-  </head>
-  <body>
-    <div id="map" class="map"></div>
-    <button id="toggle-listings" class="floating-button">Learn More</button>
-    <div id="listings" class="listings"></div>
-    <script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>Andres Gavilan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="docs/assets/css/styles.css" />
+</head>
+
+<body>
+  <div id="map" class="map"></div>
+  <div class="floating-buttons">
+    <button id="toggle-listings" class="floating-button">Experience</button>
+    <button id="publications" class="floating-button">Publications</button>
+    <button id="linkedin" class="floating-button">LinkedIn</button>
+    <button id="listening" class="floating-button">Listening</button>
+  </div>
+  <div id="listings" class="listings"></div>
+  <div id="floating-popup" class="floating-popup">
+    <p>Current visualisation has no political limits. It includes average traffic occupancy on level 1, 2 and 3 roads, as well as the names of train, bus, metro and other transport system stations.
+      Each traffic light marker is a place where I have experience and network. 
+      Click on the buttons to find out more.
+    </p>
+    <p>
+     <a href="https://github.com/Andresgavilan/CVMAP" target="_blank" class="highlight-link"> Here is the Repository</a> if you want to play doing something similar.
+    </p>
+    <p><small>**Just a heads-up: if you allow your location to be shared, the interface won't keep any information or cookies.</small> 
+    </p> 
+  </div>
+  <script src="script.js"></script>
+  </div>
+</body>
 </html>
