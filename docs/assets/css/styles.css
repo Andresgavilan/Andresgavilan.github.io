@@ -415,6 +415,17 @@ a:hover {
     transition: all 0.3s ease-in-out;
     overflow-wrap: break-word;*/
     }
+    .mapboxgl-popup-content h3 {
+      font-size: 18px; /* Larger header */
+      text-align: left;
+      background: #ffffff86;
+      color: #225495;
+      padding: 5px;
+      border-radius: 0px 0px 0 0;
+      margin: 0;
+      font-weight: 500;
+      margin-top: 0px;
+    }
 }
 
 
@@ -482,4 +493,16 @@ a:hover {
 /* Hide the default scrollbar and style the sidebar scrollbar */
 .sidebar::-webkit-scrollbar {
   width: 5px;
-}}
+}
+.mapboxgl-popup-content h3 {
+  font-size: 17px; /* Larger header */
+  text-align: left;
+  background: #ffffff86;
+  color: #225495;
+  padding: 5px;
+  border-radius: 0px 0px 0 0;
+  margin: 0;
+  font-weight: 500;
+  margin-top: 0px;
+}
+}
