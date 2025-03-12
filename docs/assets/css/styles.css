@@ -401,6 +401,7 @@ a:hover {
 
   .mapboxgl-popup-content {
     font: 100 12px/18px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+    font-weight: 5000;
     width: 70%; /* 300px standard 400px Full-width popups on smaller screens */
     /* max-width: 300px; /* Ensures it doesn't overflow */
     /*min-height: 220px; /* Keeps content balanced */
