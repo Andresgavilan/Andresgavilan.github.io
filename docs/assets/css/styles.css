@@ -271,6 +271,7 @@ a:hover {
 
 .mapboxgl-popup-content {
   font: 300 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  font-weight: bolder;
   width: 380px; /* Adjust width as needed */
   max-height: 300px; /* Set a maximum height for the popup */
   overflow-y: auto; /* Enable vertical scrolling */
