@@ -189,7 +189,7 @@ document.getElementById('linkedin').addEventListener('click', () => {
 });
 
 document.getElementById('listening').addEventListener('click', () => {
-  window.open('https://music.apple.com/profile/pipegavilan', '_blank');
+  window.open('https://soundcloud.com/socarraspipe', '_blank');
 });
 
 // Hide the floating popup when any floating button is clicked
